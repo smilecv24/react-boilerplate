@@ -36,9 +36,6 @@ export const refreshAccessToken = (token) => ({
 });
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
     return {
         type: LOGOUT
     }

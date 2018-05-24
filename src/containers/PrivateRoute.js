@@ -3,9 +3,9 @@ import { Route, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import * as reducers from '../reducers'
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+const PrivateRoute = ({ component: Component, isAuthenticated, isAccessTokenxpired, ...rest }) => (
     <Route {...rest} render={props => (
-        isAuthenticated ? (
+        isAuthenticated && !isAccessTokenxpired ? (
             <Component {...props}/>
         ) : (
             <Redirect to={{
@@ -16,7 +16,8 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
     )}/>
 )
 const mapStateToProps = (state) => ({
-    isAuthenticated: reducers.isAuthenticated(state)
+    isAuthenticated: reducers.isAuthenticated(state),
+    isAccessTokenxpired: reducers.isAccessTokenxpired(state)
 })
 
 export default connect(mapStateToProps)(PrivateRoute);
