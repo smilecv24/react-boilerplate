@@ -7,6 +7,7 @@ import {accessToken} from "../reducers";
 
 import Wrapper from '../containers/Wrapper';
 import Header from '../components/Header';
+import ReportsTable from '../components/Table';
 
 class Home extends Component {
 
@@ -29,6 +30,8 @@ class Home extends Component {
                 <Header />
 
                 <div>{this.props.data ? this.props.data.test : 'No data'}</div>
+
+                <ReportsTable />
 
             </Wrapper>
         );

@@ -12,7 +12,7 @@ const Login = (props) => {
         )
     } else {
         return (
-            <div className="row justify-content-center align-items-center h-100">
+            <div className="row justify-content-center align-items-center" style={{height: '100vh'}}>
                 <LoginForm {...props}/>
             </div>
         )
