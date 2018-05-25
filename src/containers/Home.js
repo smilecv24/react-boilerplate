@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './App.css';
-import {echo} from "./actions/data";
+import './Home.css';
+import {echo} from "../actions/data";
 import {connect} from "react-redux";
-import {accessToken} from "./reducers";
+import {accessToken} from "../reducers";
 
-class App extends Component {
+class Home extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.echo('Bearer ' + this.props.token);
+        console.log('the test string'.replace(/ /g, '-'));
+
+        const countdown = (value, fn) => {
+            fn(value);
+            return value > 0 ? countdown(value-1, fn): value
+        };
+
+        countdown(10, val => console.log(val));
+
     }
 
   render() {
@@ -35,4 +44,4 @@ const mapDispatchToProps = (dispatch) => ({
     echo: ((token) => dispatch(echo(token))),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
