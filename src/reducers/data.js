@@ -1,14 +1,14 @@
 import * as data from '../actions/data'
 
 const initialState = {
-    data: undefined
+    users: undefined,
 };
 
 export default (state = initialState, action) => {
-
+    console.log(action.payload);
     switch (action.type) {
-        case data.ECHO:
-            return {...state, data: action.payload};
+        case data.USER_SUCCESS:
+            return {...state, users: action.payload.users};
         default:
             return state
     }

@@ -1,37 +1,29 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import {Table} from 'reactstrap';
 
-export default class ReportsTable extends React.Component {
+export default class UsersTable extends React.Component {
     render() {
         return (
-            <Table striped responsive>
+            <Table striped responsive className='mt-3'>
                 <thead>
                 <tr>
                     <th>#</th>
+                    <th>Username</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Email</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {this.props.users.map(user =>
+                    <tr key={user.id}>
+                        <th scope="row">{user.id}</th>
+                        <td>{user.username}</td>
+                        <td>{user.first_name}</td>
+                        <td>{user.last_name}</td>
+                        <td>{user.email}</td>
+                    </tr>)
+                }
                 </tbody>
             </Table>
         );

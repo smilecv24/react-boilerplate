@@ -1,17 +1,17 @@
 import {RSAA} from 'redux-api-middleware'
 
-export const ECHO = '@@auth/ECHO';
-export const ECHO_FAIL= '@@auth/ECHO_FAIL';
-export const ECHO_ERROR = '@@auth/ECHO_ERROR';
+export const USER_REQUEST = '@@auth/USER_REQUEST';
+export const USER_SUCCESS = '@@auth/USER_SUCCESS';
+export const USER_FAILURE = '@@auth/USER_FAILURE';
 
 
-export const echo = (token) => ({
+export const getUsers = (token) => ({
     [RSAA]: {
         endpoint: '/api/echo/',
         method: 'GET',
         headers: {'Authorization': token},
         types: [
-            ECHO_ERROR, ECHO, ECHO_FAIL
+            USER_REQUEST, USER_SUCCESS, USER_FAILURE
         ]
     }
 });

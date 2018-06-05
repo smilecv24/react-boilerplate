@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import './Home.css';
 
-import {echo} from "../actions/data";
+import {getUsers} from "../actions/data";
 import {accessToken} from "../reducers";
 
 import Wrapper from '../containers/Wrapper';
 import Header from '../components/Header';
-import ReportsTable from '../components/Table';
+import UsersTable from '../components/Table';
 
 class Home extends Component {
 
     componentWillMount() {
-        this.props.echo('Bearer ' + this.props.token);
+        this.props.getUsers('Bearer ' + this.props.token);
         console.log('the test string'.replace(/ /g, '-'));
 
         const countdown = (value, fn) => {
@@ -29,9 +29,11 @@ class Home extends Component {
             <Wrapper>
                 <Header />
 
-                <div>{this.props.data ? this.props.data.test : 'No data'}</div>
+              {/*  {this.props.users ? this.props.users.map( user =>
+                    <div key={user.id}>Email - {user.email}</div>
+                ): null}*/}
 
-                <ReportsTable />
+                {this.props.users ? <UsersTable users={this.props.users}/>: null}
 
             </Wrapper>
         );
@@ -41,12 +43,12 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return ({
         token: accessToken(state),
-        data: state.data.data
+        users: state.data.users
     })
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    echo: ((token) => dispatch(echo(token))),
+    getUsers: ((token) => dispatch(getUsers(token))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
