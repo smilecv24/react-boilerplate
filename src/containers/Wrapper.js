@@ -1,3 +1,13 @@
-const Wrapper = ({children}) => (children);
+import React from 'react'
+import {connect} from "react-redux"
+import Loader from 'react-loader'
 
-export default Wrapper;
+const Wrapper = (props) => {
+    return (<Loader loaded={props.loaded}>{props.children}</Loader>);
+}
+
+const mapStateToProps = (state) => ({
+    loaded: state.auth.loaded,
+})
+
+export default connect(mapStateToProps, null)(Wrapper);

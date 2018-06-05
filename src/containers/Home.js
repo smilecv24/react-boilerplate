@@ -20,7 +20,7 @@ class Home extends Component {
             return value > 0 ? countdown(value - 1, fn) : value
         };
 
-        countdown(10, val => console.log(val));
+        // countdown(10, val => console.log(val));
 
     }
 

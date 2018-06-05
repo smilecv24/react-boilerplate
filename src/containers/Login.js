@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router'
+import Wrapper from '../containers/Wrapper';
 import LoginForm from '../components/LoginForm'
 import {login} from '../actions/auth'
 import {authErrors, isAuthenticated} from '../reducers'
@@ -12,9 +13,11 @@ const Login = (props) => {
         )
     } else {
         return (
-            <div className="row justify-content-center align-items-center" style={{height: '100vh'}}>
-                <LoginForm {...props}/>
-            </div>
+            <Wrapper>
+                <div className="row justify-content-center align-items-center" style={{height: '100vh'}}>
+                    <LoginForm {...props}/>
+                </div>
+            </Wrapper>
         )
     }
 }

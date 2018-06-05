@@ -4,12 +4,18 @@ import * as auth from '../actions/auth'
 const initialState = {
     access: undefined,
     refresh: undefined,
+    loaded: true,
     errors: {}
 };
 
 export default (state = initialState, action) => {
 
     switch (action.type) {
+        case auth.LOGIN_REQUEST:
+            return {
+                ...state,
+                loaded: false
+            };
         case auth.LOGIN_SUCCESS:
             return {
                 access: {
@@ -20,6 +26,7 @@ export default (state = initialState, action) => {
                     token: action.payload.refresh,
                     ...jwtDecode(action.payload.refresh)
                 },
+                loaded: true,
                 errors: {}
             };
         case auth.TOKEN_RECEIVED:
@@ -28,7 +35,8 @@ export default (state = initialState, action) => {
                 access: {
                     token: action.payload.access,
                     ...jwtDecode(action.payload.access)
-                }
+                },
+                loaded: true
             };
         case auth.LOGIN_FAILURE:
         case auth.TOKEN_FAILURE:
@@ -37,13 +45,15 @@ export default (state = initialState, action) => {
                 refresh: undefined,
                 errors: action.payload.response || {
                     'non_field_errors': action.payload.statusText
-                }
+                },
+                loaded: true,
             };
         case auth.LOGOUT:
             return {
                 access: undefined,
                 refresh: undefined,
-                errors: {}
+                errors: {},
+                loaded: true
             };
         default:
             return state
@@ -82,4 +92,8 @@ export function isAuthenticated(state) {
 
 export function errors(state) {
     return state.errors
+}
+
+export function loaded(state) {
+    return state.loaded
 }
