@@ -4,10 +4,10 @@ import Loader from 'react-loader'
 
 const Wrapper = (props) => {
     return (<Loader loaded={props.loaded}>{props.children}</Loader>);
-}
+};
 
 const mapStateToProps = (state) => ({
-    loaded: state.auth.loaded,
-})
+    loaded: state.data.loaded && state.auth.loaded,
+});
 
 export default connect(mapStateToProps, null)(Wrapper);

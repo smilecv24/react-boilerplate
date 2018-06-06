@@ -93,7 +93,3 @@ export function isAuthenticated(state) {
 export function errors(state) {
     return state.errors
 }
-
-export function loaded(state) {
-    return state.loaded
-}

@@ -12,7 +12,7 @@ import UsersTable from '../components/Table';
 class Home extends Component {
 
     componentWillMount() {
-        this.props.getUsers('Bearer ' + this.props.token);
+        this.props.getUsers(this.props.token);
         console.log('the test string'.replace(/ /g, '-'));
 
         const countdown = (value, fn) => {
