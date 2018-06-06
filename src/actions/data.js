@@ -8,6 +8,10 @@ export const USER_UPDATE_REQUEST = '@@data/USER_UPDATE_REQUEST';
 export const USER_UPDATE_SUCCESS = '@@data/USER_UPDATE_SUCCESS';
 export const USER_UPDATE_FAILURE = '@@data/USER_UPDATE_FAILURE';
 
+export const USER_DELETE_REQUEST = '@@data/USER_DELETE_REQUEST';
+export const USER_DELETE_SUCCESS = '@@data/USER_DELETE_SUCCESS';
+export const USER_DELETE_FAILURE = '@@data/USER_DELETE_FAILURE';
+
 
 export const getUsers = (token) => ({
     [RSAA]: {
@@ -28,6 +32,17 @@ export const updateUser = (token, user) => ({
         body: JSON.stringify({...user}),
         types: [
             USER_UPDATE_REQUEST, USER_UPDATE_SUCCESS, USER_UPDATE_FAILURE
+        ]
+    }
+});
+
+export const deleteUser = (token, pk) => ({
+    [RSAA]: {
+        endpoint: '/api/user/' + pk + '/',
+        method: 'DELETE',
+        headers: {'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'},
+        types: [
+            USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DELETE_FAILURE
         ]
     }
 });

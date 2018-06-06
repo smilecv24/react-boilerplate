@@ -2,7 +2,7 @@ import React from 'react';
 import {Table, Button, Input} from 'reactstrap';
 import {accessToken} from "../reducers";
 import {connect} from "react-redux";
-import {updateUser} from "../actions/data";
+import {updateUser, deleteUser} from "../actions/data";
 
 class UsersTable extends React.Component {
 
@@ -42,6 +42,11 @@ class UsersTable extends React.Component {
         this.setState({
             user: user
         })
+    };
+
+    handleDeleteClick = (user) => {
+        console.log('delete', user.id);
+        this.props.deleteUser(this.props.token, user.id);
     };
 
     render() {
@@ -86,8 +91,12 @@ class UsersTable extends React.Component {
                                 <td>{user.first_name}</td>
                                 <td>{user.last_name}</td>
                                 <td>{user.email}
-                                    <Button color="info" className="float-right"
+                                    <span className="float-right">
+                                    <Button color="info"
                                             onClick={() => this.handleEditClick(user)}>Edit</Button>
+                                    <Button color="danger" className="ml-1"
+                                            onClick={() => this.handleDeleteClick(user)}>Delete</Button>
+                                </span>
                                 </td>
                             </tr>
                         )
@@ -107,7 +116,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    updateUser: ((token, user) => dispatch(updateUser(token, user)))
+    updateUser: ((token, user) => dispatch(updateUser(token, user))),
+    deleteUser: ((token, pk) => dispatch(deleteUser(token, pk))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);

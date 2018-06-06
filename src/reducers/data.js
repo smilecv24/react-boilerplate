@@ -14,6 +14,11 @@ export default (state = initialState, action) => {
         case data.USER_UPDATE_SUCCESS:
         case data.USER_UPDATE_FAILURE:
             return {...state, users: action.payload.users, loaded: true};
+        case data.USER_DELETE_REQUEST:
+            return {...state, loaded: false};
+        case data.USER_DELETE_SUCCESS:
+        case data.USER_DELETE_FAILURE:
+            return {...state, users: action.payload.users, loaded: true};
         default:
             return state
     }
