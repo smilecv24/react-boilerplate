@@ -4,6 +4,10 @@ export const USER_REQUEST = '@@data/USER_REQUEST';
 export const USER_SUCCESS = '@@data/USER_SUCCESS';
 export const USER_FAILURE = '@@data/USER_FAILURE';
 
+export const USER_CREATE_REQUEST = '@@data/USER_CREATE_REQUEST';
+export const USER_CREATE_SUCCESS = '@@data/USER_CREATE_SUCCESS';
+export const USER_CREATE_FAILURE = '@@data/USER_CREATE_FAILURE';
+
 export const USER_UPDATE_REQUEST = '@@data/USER_UPDATE_REQUEST';
 export const USER_UPDATE_SUCCESS = '@@data/USER_UPDATE_SUCCESS';
 export const USER_UPDATE_FAILURE = '@@data/USER_UPDATE_FAILURE';
@@ -20,6 +24,18 @@ export const getUsers = (token) => ({
         headers: {'Authorization': 'Bearer ' + token},
         types: [
             USER_REQUEST, USER_SUCCESS, USER_FAILURE
+        ]
+    }
+});
+
+export const createUser = (token, user) => ({
+    [RSAA]: {
+        endpoint: '/api/users/',
+        method: 'POST',
+        headers: {'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'},
+        body: JSON.stringify({...user}),
+        types: [
+            USER_CREATE_REQUEST, USER_CREATE_SUCCESS, USER_CREATE_FAILURE
         ]
     }
 });

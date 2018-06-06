@@ -14,6 +14,7 @@ import Logout from './containers/Logout';
 import PrivateRoute from './containers/PrivateRoute';
 
 import Home from './containers/Home';
+import CreateUser from './containers/CreateUser';
 import configureStore from './store';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -26,6 +27,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/login/" component={Login}/>
                 <Route exact path="/logout/" component={Logout}/>
+                <Route exact path="/create/" component={CreateUser}/>
                 <PrivateRoute path="/" component={Home}/>
             </Switch>
         </ConnectedRouter>

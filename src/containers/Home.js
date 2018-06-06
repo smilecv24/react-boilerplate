@@ -8,6 +8,7 @@ import {accessToken} from "../reducers";
 import Wrapper from '../containers/Wrapper';
 import Header from '../components/Header';
 import UsersTable from '../components/Table';
+import {NavLink} from "react-router-dom";
 
 class Home extends Component {
 
@@ -27,13 +28,15 @@ class Home extends Component {
     render() {
         return (
             <Wrapper>
-                <Header />
-
-              {/*  {this.props.users ? this.props.users.map( user =>
+                <Header/>
+                <button className="nav-item bg-secondary float-right mt-3">
+                    <NavLink className="nav-link text-white" to='/create/'>Add User</NavLink>
+                </button>
+                {/*  {this.props.users ? this.props.users.map( user =>
                     <div key={user.id}>Email - {user.email}</div>
                 ): null}*/}
 
-                {this.props.users ? <UsersTable users={this.props.users}/>: null}
+                {this.props.users ? <UsersTable users={this.props.users}/> : null}
 
             </Wrapper>
         );
