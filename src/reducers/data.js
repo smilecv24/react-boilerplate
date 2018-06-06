@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
             return {...state, loaded: false};
         case data.USER_DELETE_SUCCESS:
         case data.USER_DELETE_FAILURE:
-            return {...state, loaded: true};
+            return {...state, users: action.payload.users, loaded: true};
         case data.USER_CREATE_REQUEST:
             return {...state, loaded: false};
         case data.USER_CREATE_SUCCESS:
